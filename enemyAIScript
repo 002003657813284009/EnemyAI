@@ -12,7 +12,7 @@ public class enemyAIScript : MonoBehavior {
     if(isPlayerAlive){
      playerDistance = Vector3.Distance (player.position, transform.position);
      if(playerDistance < 15f){
-        lookAtPlayer();
+        facePlayer();
        }
       if(playerDistance < 12f){
        if(playerDistance > 12){
@@ -25,7 +25,7 @@ public class enemyAIScript : MonoBehavior {
       }
     }
   
-  void lookAtPlayer(0{
+  void facePlayer(){
     Quarternion rotation = Quarternion.LookRotation (player.position - transform.position);
     transform.rotation = Quarternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
   }
