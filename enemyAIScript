@@ -1,5 +1,5 @@
 using UnityEngine;
-using System.Collectsions;
+using System.Collections;
 
 public class enemyAIScript : MonoBehavior {
   public transform player;
