@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collectsions;
 
 public class enemyAIScript : MonoBehavior {
-  public Transform player;
+  public transform player;
   public float playerDistance;
   public float rotationDamping;
   public float moveSpeed;
