@@ -1,0 +1,45 @@
+using UnityEngine;
+using System.Collectsions;
+
+public class enemyAIScript : MonoBehavior {
+  public Transform player;
+  public float playerDistance;
+  public float rotationDamping;
+  public float moveSpeed;
+  public static bool isPlayerAlive = true;
+  
+  void Update(){
+    if(isPlayerAlive){
+     playerDistance = Vector3.Distance (player.position, transform.position);
+     if(playerDistance < 15f){
+        lookAtPlayer();
+       }
+      if(playerDistance < 12f){
+       if(playerDistance > 12){
+         chase();
+          }
+         else if(playerDistance < 2f){
+           explode();
+            }
+        }
+      }
+    }
+  
+  void lookAtPlayer(0{
+    Quarternion rotation = Quarternion.LookRotation (player.position - transform.position);
+    transform.rotation = Quarternion.Slerp(transform.rotation, rotation, Time.deltaTime * rotationDamping);
+  }
+  
+  void chase(){
+    transform.Translate (Vector3.forward * moveSpeed * Time.deltaTime);
+  }
+  
+  void explode(){
+    RaycastHit hit;
+    if(Physics.Raycast (transform.position, transform.forward, out hit){
+      if(hit.collider.gameObject.tag == "Player"){
+        hit.collider.gameObject.GetComponent<healthScript>().health -= 5f;
+      }
+    }
+  }
+}
