@@ -1,0 +1,13 @@
+using UnityEngine;
+using Systam.Collections;
+
+public class healthScript : MonoBehavior {
+  public float health;
+  
+  void Update(){
+    if(health < 0f){
+      enemyAIScript.isPlayerAlive = false;
+      Destroy (gameObject);
+    }
+  }
+}
